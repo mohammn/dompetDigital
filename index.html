@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>mn-belajarweb.blogspot.com</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="foto/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="js/all.js"></script>
+    <!-- Google fonts-->
+    <link href=" css/montserrat.css" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top" id="namaSaya">mn-belajarweb</a>
+        </div>
+    </nav>
+    <!-- Portfolio Section-->
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container pt-5">
+            <!-- Portfolio Section Heading-->
+            <h2 class="page-section-heading text-center text-secondary mb-0">Dompet Digital :)</h2>
+            <h5 class="text-center text-secondary mb-0 pt-2">Uang di dompet :<u id="isiDompet"> Rp. 0.00</u></h5>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <button class="btn btn-info" id="tombolTambah" style="display: none;" onclick="tampilModal()">Tambah
+                    Transaksi</button>
+            </div>
+            <!-- Portfolio Grid Items-->
+            <div class="row justify-content-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                No.
+                            </th>
+                            <th>
+                                Nama
+                            </th>
+                            <th>
+                                Jumlah
+                            </th>
+                            <th>
+                                Tanggal
+                            </th>
+                            <th>
+                                Jenis Transaksi
+                            </th>
+                            <th>
+                                Hapus
+                            </th>
+                        </tr>
+                    </thead>
+                    <thead id="listHutang">
+
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </section>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright © <b id="copyright"></b></small></div>
+    </div>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+    <div class="scroll-to-top d-lg-none position-fixed">
+        <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i
+                class="fa fa-chevron-up"></i></a>
+    </div>
+    <!-- Portfolio Modals-->
+    <!-- Portfolio Modal 1-->
+    <div class="portfolio-modal modal fade" id="pengaturanModal" tabindex="-1" role="dialog"
+        aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-2">
+                                Nama Saya :
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" id="isianNama" />
+                            </div>
+                            <div class="col-lg-2">
+                                Pass Baru :
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="password" class="form-control" id="ubahPass" />
+                            </div>
+                            <div class="col-lg-2">
+                                konfir Pass :
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="password" class="form-control" id="confirUbahPass" />
+                            </div>
+                            <div class="col-lg-2">
+                                <div id="pesanErrUbahPengaturan" class="badge badge-danger"></div>
+                                <button class="btn btn-info mt-2" onclick="ubahPengaturan()">Ubah</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" placeholder="Nama Transaksi"
+                                    id="namaTransaksi" />
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="number" class="form-control" id="jumlahUang" placeholder="Jumlah" />
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="date" class="form-control" id="tglTransaksi" />
+                            </div>
+                            <div class="col-lg-2">
+                                <select id="jenisTransaksi" class="form-control">
+                                    <option value="pengeluaran">Pengeluaran</option>
+                                    <option value="pemasukan">Pemasukan</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-info" onclick="tambahTransaksi()">Tambah</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="daftarModal" tabindex="-1" role="dialog"
+        aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <h5 class="col-lg-12 justify-content-center mb-4">Daftar Password :</h5>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-2">
+                                Password :
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="password" class="form-control" id="pass" />
+                            </div>
+                            <div class="col-lg-2">
+                                konfirmasi Password :
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="password" class="form-control" id="confirPass" />
+                            </div>
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-12">
+                                <div id="pesanErrDaftarAdmin" class="badge badge-danger"></div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-lg-12">
+                                <button class="btn btn-info" id="tombolTambahPass"
+                                    onclick="daftarAdmin()">Tambah</button>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="loginModal" tabindex="-1" role="dialog"
+        aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <h5 class="col-lg-12 justify-content-center mb-4">Masukan Password :</h5>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4">
+                                Password :
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="password" class="form-control" id="loginPass" />
+                                <div id="pesanErrLogin" class="badge badge-danger"></div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-lg-12">
+                                <button class="btn btn-info" id="tombolLogin" onclick="login()">Masuk</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="js/jquery.easing.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+    <script>
+        if (localStorage.getItem("namaSaya")) {
+            var date = new Date();
+
+            $("#namaSaya").html(localStorage.getItem("namaSaya"));
+            $("#copyright").html(localStorage.getItem("namaSaya") + " " + date.getFullYear())
+        }
+
+        //localStorage.setItem("dataTransaksi", "Bawang+cabin.png=Cabe+cake.png=Tomat+safe.png");
+        if (localStorage.getItem("passDompet")) {
+            $("#loginModal").modal("show")
+        } else {
+            $("#daftarModal").modal("show")
+        }
+
+        function tampilkanDataAwal() {
+            var hasil = "";
+            if (localStorage.getItem("dataTransaksi")) {
+                var data = localStorage.getItem("dataTransaksi");
+                data = data.split("=+=");
+                var pemisah = '';
+                for (let i = data.length - 1; i >= 0; i--) {
+                    pemisah = data[i].split('+-+');
+                    hasil += '<tr><td>' + (data.length - i) + '</td><td>' + pemisah[0] + '</td><td>Rp. ' + formatRupiah(pemisah[1].toString()) + '</td><td>' + pemisah[2] + '</td><td>' + pemisah[3] + '</td><td><button class="btn btn-danger" onClick="hapusData(' + i + ')">x</button></td></tr>';
+                }
+            }
+            document.getElementById("listHutang").innerHTML = hasil;
+        }
+
+        function tampilModal() {
+            $("#pengaturanModal").modal("show")
+        }
+
+        function daftarAdmin() {
+            if ($("#pass").val() == $("#confirPass").val()) {
+                $("#pesanErrDaftarAdmin").html("")
+                localStorage.setItem("passDompet", $("#pass").val())
+
+                $("#daftarModal").modal("hide")
+            } else {
+                $("#pesanErrDaftarAdmin").html("Konfirmasi Password tidak cocok")
+            }
+        }
+        function login() {
+            if ($("#loginPass").val() == localStorage.getItem("passDompet")) {
+                $("#loginPass").val("")
+                $("#loginModal").modal("hide")
+                tampilkanDataAwal()
+                if (localStorage.getItem("namaSaya")) {
+                    $("#isianNama").val(localStorage.getItem("namaSaya"))
+                }
+                $("#ubahPass").val(localStorage.getItem("passDompet"))
+                $("#pesanErrLogin").html("")
+                $("#tombolTambah").show()
+                $("#namaSaya").attr("onclick", "tampilModal()")
+                tampilkanUang()
+            } else {
+                $("#pesanErrLogin").html("Password tidak cocok")
+            }
+        }
+
+        function ubahPengaturan() {
+            if ($("#ubahPass").val() == $("#confirUbahPass").val()) {
+                localStorage.setItem("passDompet", $("#ubahPass").val())
+                localStorage.setItem("namaSaya", $("#isianNama").val())
+                $("#namaSaya").html(localStorage.getItem("namaSaya"))
+                $("#pesanErrUbahPengaturan").html("")
+                $("#pengaturanModal").modal("hide")
+            } else {
+                $("#pesanErrUbahPengaturan").html("Konfirmasi Password tidak cocok")
+            }
+        }
+
+        function hapusData(id) {
+            var data = localStorage.getItem("dataTransaksi");
+            data = data.split("=+=");
+            var hasil = "";
+            for (let i = 0; i < data.length; i++) {
+                if (i != id) {
+                    hasil += data[i] + "=+=";
+                } else {
+                    var penampung = data[i].split("+-+")
+                    if (penampung[3] == 'pengeluaran') {
+                        penampung[3] = 'pemasukan'
+                    } else {
+                        penampung[3] = 'pengeluaran'
+                    }
+                }
+            }
+            var hasilAkhir = "";
+            hasil = hasil.split("=+=");
+            for (let j = 0; j < hasil.length; j++) {
+                hasilAkhir += hasil[j];
+                if (j < (hasil.length - 2)) { hasilAkhir += "=+=" }
+            }
+            localStorage.setItem("dataTransaksi", hasilAkhir)
+            //console.log(hasil)
+            tampilkanDataAwal()
+            updateDompet(penampung[1], penampung[3])
+        }
+
+        function tambahTransaksi() {
+            var nama = $("#namaTransaksi").val();
+            var jumlah = $("#jumlahUang").val()
+            var tglTransaksi = $("#tglTransaksi").val()
+            var jenisTransaksi = $("#jenisTransaksi").val()
+
+            var dataLama = localStorage.getItem("dataTransaksi");
+            var dataBaru = nama + "+-+" + jumlah + "+-+" + tglTransaksi + "+-+" + jenisTransaksi;
+            updateDompet(jumlah, jenisTransaksi)
+            if (dataLama) {
+                dataBaru = "=+=" + dataBaru;
+            }
+            localStorage.setItem("dataTransaksi", dataLama + dataBaru);
+            $("#namaTransaksi").val("");
+            $("#jumlahUang").val("");
+            $("#tglTransaksi").val("");
+            tampilkanDataAwal()
+            updateDompet()
+        }
+
+        function updateDompet(jumlah = "", jenisTransaksi = "") {
+            var uangDompet = localStorage.getItem("dompet")
+            console.log(uangDompet)
+
+            if (jenisTransaksi) {
+                if (jenisTransaksi == "pemasukan") {
+                    if (uangDompet) {
+                        localStorage.setItem("dompet", (parseInt(uangDompet) + parseInt(jumlah)))
+                        tampilkanUang()
+                    } else {
+                        localStorage.setItem("dompet", jumlah)
+                        tampilkanUang()
+                    }
+                } else {
+                    if (uangDompet) {
+                        localStorage.setItem("dompet", (parseInt(uangDompet) - parseInt(jumlah)))
+                        tampilkanUang()
+                    } else {
+                        localStorage.setItem("dompet", 0 - jumlah)
+                        tampilkanUang()
+                    }
+                }
+            }
+        }
+
+        function tampilkanUang() {
+            var uangDompet = localStorage.getItem("dompet")
+            if (uangDompet) {
+                if (uangDompet < 0) {
+                    $("#isiDompet").html(" Rp. " + uangDompet)
+                } else {
+                    $("#isiDompet").html(" Rp. " + formatRupiah(uangDompet.toString()))
+                }
+            } else {
+                $("#isiDompet").html(" Rp. 0.00")
+            }
+        }
+
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    </script>
+</body>
+
+</html>
