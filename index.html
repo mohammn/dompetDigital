@@ -259,6 +259,8 @@
                 $("#pesanErrDaftarAdmin").html("")
                 localStorage.setItem("passDompet", $("#pass").val())
 
+                $("#tombolTambah").show()
+                $("#namaSaya").attr("onclick", "tampilModal()")
                 $("#daftarModal").modal("hide")
             } else {
                 $("#pesanErrDaftarAdmin").html("Konfirmasi Password tidak cocok")
